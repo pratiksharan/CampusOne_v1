@@ -1,0 +1,15 @@
+{
+  "appId": "com.campusone.app",
+  "appName": "CampusOne",
+  "webDir": "dist",
+  "server": {
+    "androidScheme": "https"
+  },
+  "plugins": {
+    "StatusBar": {
+      "overlaysWebView": false,
+      "style": "DARK",
+      "backgroundColor": "#0f2460"
+    }
+  }
+}

@@ -1,0 +1,38 @@
+# Local Netlify folder
+.netlify/
+
+# Dependencies
+node_modules/
+node_modules (new app)/
+**/node_modules/
+
+# Build outputs
+dist/
+build/
+**/build/
+
+# Capacitor / Android build artifacts
+android/.gradle/
+android/app/build/
+android/build/
+android/capacitor-cordova-android-plugins/build/
+
+# IDE
+.idea/
+.idea (new app)/
+
+# Recovery artifacts (generated locally)
+apk_extracted/
+recovered_from_apk_web/
+
+# Local generated logs and packages
+build_err.txt
+build_log.txt
+build_output.log
+base.apk
+
+# Signing keys (DO NOT COMMIT)
+*.jks
+*.keystore
+*.p12
+*.pfx

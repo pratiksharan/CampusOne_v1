@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CampusOne — Pitch Deck</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Outfit:wght@700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #030712;
+            --accent: #2d5be3;
+            --text: #f9fafb;
+            --sub: #94a3b8;
+            --card: rgba(255, 255, 255, 0.03);
+            --border: rgba(255, 255, 255, 0.1);
+        }
+
+        * { margin: 0; padding: 0; box-box-sizing: border-box; }
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background: var(--bg); 
+            color: var(--text); 
+            overflow-x: hidden;
+        }
+
+        /* Mode Styles */
+        body.mode-present .slide-stack { display: none; }
+        body.mode-print .present-view { display: none; }
+
+        /* Slide Container */
+        .slide {
+            width: 1280px;
+            height: 720px;
+            position: relative;
+            background: radial-gradient(circle at 0% 0%, #1e293b 0%, #030712 100%);
+            display: flex;
+            flex-direction: column;
+            padding: 60px 80px;
+            overflow: hidden;
+            margin: 0 auto;
+        }
+
+        /* Slide Decorations */
+        .slide::before {
+            content: '';
+            position: absolute;
+            top: -100px;
+            right: -100px;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(45, 91, 227, 0.1) 0%, transparent 70%);
+            z-index: 0;
+        }
+
+        .slide-inner { position: relative; z-index: 10; height: 100%; display: flex; flex-direction: column; }
+
+        /* Typography */
+        h1, h2 { font-family: 'Outfit', sans-serif; font-weight: 900; line-height: 1.1; }
+        h1 { font-size: 84px; margin-bottom: 20px; color: #fff; }
+        h2 { font-size: 64px; margin-bottom: 40px; color: var(--accent); }
+        .sub { font-size: 32px; color: var(--sub); font-weight: 600; margin-bottom: 40px; }
+        p, li { font-size: 26px; line-height: 1.5; color: var(--sub); }
+        b { color: #fff; }
+
+        /* UI Elements */
+        .badge {
+            display: inline-block;
+            padding: 8px 16px;
+            border-radius: 99px;
+            background: rgba(45, 91, 227, 0.15);
+            color: var(--accent);
+            font-weight: 800;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 24px;
+            border: 1px solid rgba(45, 91, 227, 0.3);
+        }
+
+        .pg { position: absolute; top: 40px; right: 40px; font-weight: 800; color: var(--border); font-size: 20px; }
+
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+        .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 30px; }
+
+        .card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            padding: 40px;
+            border-radius: 24px;
+            transition: transform 0.3s ease;
+        }
+
+        /* Animations */
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .animate { animation: fadeIn 0.8s ease forwards; }
+
+        /* Controls */
+        #controls {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 20px;
+            z-index: 9999;
+            background: rgba(0,0,0,0.8);
+            padding: 10px 20px;
+            border-radius: 99px;
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--border);
+        }
+
+        button {
+            background: none;
+            border: none;
+            color: #fff;
+            font-weight: 800;
+            cursor: pointer;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+        button:hover { background: var(--accent); }
+        button.active { background: var(--accent); }
+
+        /* Print context */
+        @media print {
+            #controls { display: none !important; }
+            .slide { page-break-after: always; margin: 0; }
+        }
+    </style>
+</head>
+<body class="mode-present">
+
+    <div id="controls">
+        <button onclick="setMode('present')" id="btn-present" class="active">Present Mode</button>
+        <button onclick="setMode('print')" id="btn-print">Print / PDF Mode</button>
+        <span style="color: grey; padding: 8px; font-size: 12px">| Use Arrows to Navigate</span>
+    </div>
+
+    <!-- PERSENTATION VIEW -->
+    <div class="present-view" id="present-view">
+        <!-- Slides will move here dynamically -->
+    </div>
+
+    <!-- STACK VIEW (Invisible in Present Mode) -->
+    <div class="slide-stack" id="slide-stack">
+        
+        <!-- SLIDE 1: TITLE -->
+        <section class="slide" id="s1">
+            <div class="pg">01</div>
+            <div class="slide-inner" style="justify-content: center; align-items: center; text-align: center;">
+                <div class="badge animate">Digital Campus Transformation</div>
+                <h1 class="animate" style="font-size: 120px; margin-bottom: 0;">CampusOne</h1>
+                <p class="sub animate" style="color: var(--accent); font-size: 38px;">One App. One Community. Zero Chaos.</p>
+                <div style="margin-top: 60px; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 40px;" class="animate">
+                    <div class="card"><b>Presented By:</b><br>Team CampusSync</div>
+                    <div class="card"><b>Course:</b><br>Technical English</div>
+                    <div class="card"><b>University:</b><br>DSU, Bengaluru</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 2: THE PROBLEM -->
+        <section class="slide" id="s2">
+            <div class="pg">02</div>
+            <div class="slide-inner">
+                <div class="badge">The Pain Points</div>
+                <h2>The Information Chaos</h2>
+                <div class="grid-3">
+                    <div class="card">
+                        <div style="font-size: 50px; margin-bottom: 20px;">💬</div>
+                        <h3 style="margin-bottom: 15px;">WhatsApp Fatigue</h3>
+                        <p>Important notices get buried in 20+ unrelated chats and memes.</p>
+                    </div>
+                    <div class="card">
+                        <div style="font-size: 50px; margin-bottom: 20px;">📋</div>
+                        <h3 style="margin-bottom: 15px;">Ghost Boards</h3>
+                        <p>Physical notice boards are outdated and ignored by modern students.</p>
+                    </div>
+                    <div class="card">
+                        <div style="font-size: 50px; margin-bottom: 20px;">🕵️</div>
+                        <h3 style="margin-bottom: 15px;">Scattered Answers</h3>
+                        <p>No central place to ask seniors for advice or find lost items.</p>
+                    </div>
+                </div>
+                <p style="margin-top: 60px; font-size: 32px; text-align: center; color: #fff;">
+                    Students waste <b>15+ minutes daily</b> just searching for basic info.
+                </p>
+            </div>
+        </section>
+
+        <!-- SLIDE 3: OUR SOLUTION -->
+        <section class="slide" id="s3">
+            <div class="pg">03</div>
+            <div class="slide-inner">
+                <div class="badge">The Solution</div>
+                <h2>CampusOne: The Unified Hub</h2>
+                <div style="display: flex; gap: 60px; align-items: center;">
+                    <div style="flex: 1;">
+                        <ul style="list-style: none; display: flex; flex-direction: column; gap: 20px;">
+                            <li>✅ <b>Verified Feed:</b> Reliable news only.</li>
+                            <li>✅ <b>Event Hub:</b> 1-click registration.</li>
+                            <li>✅ <b>Study Groups:</b> Peer-to-peer collab.</li>
+                            <li>✅ <b>Digital Lost & Found:</b> Real-time tracking.</li>
+                            <li>✅ <b>Career Portal:</b> Internship alerts.</li>
+                        </ul>
+                    </div>
+                    <div style="flex: 1.2;" class="card">
+                        <p style="font-size: 36px; color: #fff; line-height: 1.3;">
+                            "Replacing 15+ disconnected groups with <span style="color:var(--accent)">one intelligent ecosystem."</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 4: INNOVATIONS -->
+        <section class="slide" id="s4">
+            <div class="pg">04</div>
+            <div class="slide-inner">
+                <div class="badge">Key Innovations</div>
+                <h2>Why It Works</h2>
+                <div class="grid-2">
+                    <div class="card">
+                        <h3>1. Structured Categorization</h3>
+                        <p>Smart filters (Academics, Events, Clubs) ensure you only see what matters to you.</p>
+                    </div>
+                    <div class="card">
+                        <h3>2. Professional Personas</h3>
+                        <p>Integrated "Student Identity" cards showing skills and contributions.</p>
+                    </div>
+                    <div class="card">
+                        <h3>3. Community Q&A</h3>
+                        <p>Bridging the gap between juniors and seniors through "Ask Seniors" forums.</p>
+                    </div>
+                    <div class="card">
+                        <h3>4. Action-Oriented UI</h3>
+                        <p>Direct "Apply" or "Register" buttons instead of static text announcements.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 5: OUR PROCESS -->
+        <section class="slide" id="s5">
+            <div class="pg">05</div>
+            <div class="slide-inner">
+                <div class="badge">Technical Journey</div>
+                <h2>Design Thinking Process</h2>
+                <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-top: 40px;">
+                    <div style="text-align: center; width: 180px;">
+                        <div style="font-size: 40px; margin-bottom: 20px;">🔍</div>
+                        <h3>Empathize</h3>
+                        <p style="font-size: 16px;">Student Surveys</p>
+                    </div>
+                    <div style="border-top: 2px dashed var(--border); width: 60px; margin-top: 25px;"></div>
+                    <div style="text-align: center; width: 180px;">
+                        <div style="font-size: 40px; margin-bottom: 20px;">🎯</div>
+                        <h3>Define</h3>
+                        <p style="font-size: 16px;">Core Problems</p>
+                    </div>
+                    <div style="border-top: 2px dashed var(--border); width: 60px; margin-top: 25px;"></div>
+                    <div style="text-align: center; width: 180px;">
+                        <div style="font-size: 40px; margin-bottom: 20px;">💡</div>
+                        <h3>Ideate</h3>
+                        <p style="font-size: 16px;">Feature Mapping</p>
+                    </div>
+                    <div style="border-top: 2px dashed var(--border); width: 60px; margin-top: 25px;"></div>
+                    <div style="text-align: center; width: 180px;">
+                        <div style="font-size: 40px; margin-bottom: 20px;">📱</div>
+                        <h3>Prototype</h3>
+                        <p style="font-size: 16px;">Mobile UI Dev</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 6: THE PRODUCT (SCREENSHOTS) -->
+        <section class="slide" id="s6">
+            <div class="pg">06</div>
+            <div class="slide-inner">
+                <div class="badge">The Product</div>
+                <h2>Live Demonstration</h2>
+                <div class="grid-3" style="height: 400px;">
+                    <div class="card" style="display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.01); border-style: dashed;">
+                        <p>Place Mobile Screenshot 1</p>
+                    </div>
+                    <div class="card" style="display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.01); border-style: dashed;">
+                        <p>Place Mobile Screenshot 2</p>
+                    </div>
+                    <div class="card" style="display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.01); border-style: dashed;">
+                        <p>Place Mobile Screenshot 3</p>
+                    </div>
+                </div>
+                <p style="margin-top: 30px; text-align: center; color: var(--accent); font-weight: 800;">
+                    Scan the QR (if available) to test the live prototype!
+                </p>
+            </div>
+        </section>
+
+        <!-- SLIDE 7: CONCLUSION -->
+        <section class="slide" id="s7">
+            <div class="pg">07</div>
+            <div class="slide-inner" style="justify-content: center; align-items: center; text-align: center;">
+                <h1 style="color: var(--accent);">Thank You!</h1>
+                <p class="sub">Empowering students through better communication.</p>
+                <div style="margin-top: 60px;">
+                    <p><b>Q&A Session</b></p>
+                    <p style="font-size: 20px; color: var(--accent); margin-top: 10px;">campusone.dsu.edu.in</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = Array.from(document.querySelectorAll('.slide'));
+        const stack = document.getElementById('slide-stack');
+        const presentView = document.getElementById('present-view');
+
+        function setMode(mode) {
+            document.body.className = 'mode-' + mode;
+            document.querySelectorAll('#controls button').forEach(b => b.classList.remove('active'));
+            document.getElementById('btn-' + mode).classList.add('active');
+            
+            if (mode === 'present') {
+                showSlide(currentSlide);
+            } else {
+                // Return all slides to stack for print
+                slides.forEach(s => stack.appendChild(s));
+            }
+        }
+
+        function showSlide(index) {
+            if (index < 0) index = 0;
+            if (index >= slides.length) index = slides.length - 1;
+            currentSlide = index;
+            
+            // Clear view and add single slide
+            presentView.innerHTML = '';
+            const s = slides[currentSlide].cloneNode(true);
+            presentView.appendChild(s);
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (document.body.classList.contains('mode-present')) {
+                if (e.key === 'ArrowRight' || e.key === ' ') showSlide(currentSlide + 1);
+                if (e.key === 'ArrowLeft') showSlide(currentSlide - 1);
+            }
+        });
+
+        // Initialize
+        setMode('present');
+    </script>
+</body>
+</html>

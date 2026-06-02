@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">#0f2460</item>
+        <item name="colorPrimaryDark">#0f2460</item>
+        <item name="colorAccent">#2d5be3</item>
+        <item name="android:statusBarColor">#0f2460</item>
+        <item name="android:windowTranslucentStatus">false</item>
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="android:windowLightStatusBar">false</item>
+    </style>
+
+    <style name="AppTheme.NoActionBarLaunch" parent="AppTheme">
+        <item name="android:background">@android:color/white</item>
+    </style>
+
+    <style name="AppTheme.Bridge" parent="AppTheme" />
+
+</resources>
