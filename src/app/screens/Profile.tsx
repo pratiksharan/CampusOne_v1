@@ -79,7 +79,6 @@ export default function Profile() {
           Pratik Sharan
         </Typography>
 
-        {/* LinkedIn-style Tagline */}
         <Typography sx={{ fontSize: '15px', color: '#60a5fa', fontWeight: 700, mb: 0.5 }}>
           CS Student • App Dev & Cybersecurity Enthusiast
         </Typography>

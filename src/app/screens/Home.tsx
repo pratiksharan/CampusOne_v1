@@ -23,7 +23,6 @@ import {
 import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
 import SearchIcon from "@mui/icons-material/Search";
 import TrendingUpIcon from "@mui/icons-material/TrendingUp";
-import CloseIcon from "@mui/icons-material/Close";
 import { motion, AnimatePresence } from "motion/react";
 import { useState, useEffect } from "react";
 
@@ -111,7 +110,6 @@ const categories = [
   },
 ];
 
-// ── Community-only data ──────────────────────────────
 const todayMess = {
   meal: 'Lunch',
   time: '12:30 – 2:00 PM',
@@ -183,8 +181,7 @@ export default function Home() {
 
   return (
     <Box className="pb-28 bg-slate-50 min-h-screen">
-      {/* Hero Header Region */}
-      {/* Hero Header Region */}
+      {/* Hero Header */}
       <Box
         sx={{
           background: 'linear-gradient(135deg, #0f2460 0%, #2d5be3 100%)',
@@ -311,7 +308,6 @@ export default function Home() {
               </motion.div>
             ))}
 
-            {/* Placeholder for 8th slot (More Options) for perfect grid symmetry */}
             <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 7 * 0.05 + 0.1 }}>
               <Box
                 onClick={() => setMoreSnackbar(true)}

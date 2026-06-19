@@ -13,6 +13,8 @@ import { Capacitor } from '@capacitor/core';
 import { StatusBar, Style } from '@capacitor/status-bar';
 
 const VALID_DOMAINS = ['.ac.in', '.edu', '.edu.in'];
+const DEMO_EMAIL = 'pratiksharan@dsu.edu.in';
+const DEMO_PASSWORD = 'campusone-demo';
 
 function isCollegeEmail(email: string): boolean {
   const lower = email.toLowerCase().trim();
@@ -69,6 +71,16 @@ export default function Login() {
     setStep(2);
   };
 
+  const completeLogin = () => {
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+      setStep('success');
+      localStorage.setItem('campusone_auth', 'true');
+      setTimeout(() => navigate('/', { replace: true }), 1400);
+    }, 1200);
+  };
+
   const handleLogin = () => {
     if (!password) {
       setPasswordError('Please enter your password');
@@ -79,13 +91,19 @@ export default function Login() {
       return;
     }
     setPasswordError('');
-    setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
-      setStep('success');
-      localStorage.setItem('campusone_auth', 'true');
-      setTimeout(() => navigate('/', { replace: true }), 1400);
-    }, 1200);
+    completeLogin();
+  };
+
+  const handleDemoLogin = () => {
+    setEmail(DEMO_EMAIL);
+    setPassword(DEMO_PASSWORD);
+    setEmailError('');
+    setPasswordError('');
+    setShowPassword(false);
+    setStep(2);
+    window.setTimeout(() => {
+      completeLogin();
+    }, 150);
   };
 
   return (
@@ -293,6 +311,21 @@ export default function Login() {
                   }}
                 >
                   Continue
+                </Button>
+
+                <Button
+                  fullWidth
+                  variant="outlined"
+                  onClick={handleDemoLogin}
+                  disabled={loading}
+                  sx={{
+                    mt: 1.5,
+                    height: 52,
+                    fontSize: '15px',
+                    borderWidth: 2,
+                  }}
+                >
+                  One-tap demo access
                 </Button>
               </motion.div>
             )}

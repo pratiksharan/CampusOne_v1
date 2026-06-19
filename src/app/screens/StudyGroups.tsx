@@ -117,7 +117,6 @@ export default function StudyGroups() {
   const myGroups = filteredGroups.filter(g => joined.has(g.id));
   const otherGroups = filteredGroups.filter(g => !joined.has(g.id));
 
-  // INSIDE GROUP VIEW
   if (currentActiveGroupData) {
     return (
       <div className="bg-[#f8fafc] flex flex-col" style={{ height: 'calc(100dvh - 80px)', overflow: 'hidden' }}>
